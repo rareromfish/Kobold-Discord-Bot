@@ -12,16 +12,16 @@ model_config = {
     "use_authors_note": False,
     "use_world_info": False,
     "use_memory": False,
-    "max_context_length": 2400,
+    "max_context_length": 2048,
     "max_length": 120,
-    "rep_pen": 1.02,
+    "rep_pen": 1.1,
     "rep_pen_range": 1024,
-    "rep_pen_slope": 0.9,
-    "temperature": 1.0,
-    "tfs": 0.9,
-    "top_p": 0.9,
-    "typical": 1,
-    "sampler_order": [6, 0, 1, 2, 3, 4, 5]
+    "rep_pen_slope": 0.7,
+    "temperature": .66,
+    "tfs": 1,
+    "top_p": 1,
+    "typical": .6,
+    "sampler_order": [4, 5, 1, 0, 2, 3, 6]
 }
 
 def embedder(msg):
