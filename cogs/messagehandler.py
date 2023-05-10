@@ -46,25 +46,18 @@ class ListenerCog(commands.Cog, name="listener"):
         """
         # if message is channel id argument or DM or
         if message.channel.id in [int(channel_id) for channel_id in self.bot.guild_ids] or message.guild is None:
+            async with message.channel.typing():
             # image handling
             if await self.has_image_attachment(message):
                 image_response = await self.bot.get_cog("image_caption").image_comment(message, message.content)
                 response = await self.bot.get_cog("chatbot").chat_command(message, image_response)
                 if response:
-                    async with message.channel.typing():
-                        await asyncio.sleep(1)  # Simulate some work being done
-                        await message.reply(response)
+                    await message.channel.send(response)
             else:
                 # No image. Normal text response
                 response = await self.bot.get_cog("chatbot").chat_command(message, message.content)
                 if response:
-                    async with message.channel.typing():
-                        await asyncio.sleep(1)  # Simulate some work being done
-                        if random.random() < 0.8:
-                            await message.channel.send(response)
-                        else:
-                            await message.reply(response)
-                            return
+                    await message.channel.send(response)
 
 
 async def setup(bot):
